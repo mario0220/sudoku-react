@@ -9,7 +9,6 @@ const puzzle = Array.from({ length:9 }, () => Array.from({ length: 9 }, () => 0)
 
 const remove = (grid, k) => {
   while(k !==0) {
-    let cellId = Math.floor(Math.random() * 81)+1;
     let i = Math.floor(Math.random()*8) + 1;
     let j = Math.floor(Math.random()*8) + 1;
     if(grid[i][j] !== 0) {
