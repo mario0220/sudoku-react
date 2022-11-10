@@ -1,9 +1,7 @@
 import React from 'react'
 
-export default function Cell() {
+export default function Cell({value}) {
   return (
-    <div>
-      <input className='cellInput' />
-    </div>
+      <input value={value === 0? '': value} className='cellInput' />
   )
 }

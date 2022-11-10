@@ -9,8 +9,6 @@ export default function Sudoku() {
   console.log('solved')
   console.log(solve[1]);
   return (
-    <div>
       <Cell />
-    </div>
   )
 }

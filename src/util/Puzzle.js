@@ -87,7 +87,6 @@ const diagonal = () => {
 
 }
 export const generatePuzzle = () => {
-  let unsolved;
   //Fill diagonal matrices
   diagonal();
   //recursively solve new puzzle
@@ -96,6 +95,5 @@ export const generatePuzzle = () => {
   //remove elements
   remove(puzzle, 20);
 
-  console.log(puzzle)
-  return [unsolved, solution];
+  return [puzzle, solution];
 };
