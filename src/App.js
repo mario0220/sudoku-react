@@ -3,12 +3,8 @@ import { generatePuzzle } from './util/Puzzle';
 
 import { useState } from 'react';
 
+let sudoku = generatePuzzle();
 function App() {
-  let sudoku = generatePuzzle();
-  console.log('unsolved');
-  console.log(sudoku[0]);
-  console.log('solved')
-  console.log(sudoku[1]);
   const [sudokuArr, setSudokuArr] = useState(sudoku[0]);
   const getDeepCopy = (arr) => {
     return JSON.parse(JSON.stringify(arr));
@@ -22,6 +18,40 @@ function App() {
     }
     setSudokuArr(grid);
   }
+
+  //funciton checks if sudoku matches solution
+  const checkSudoku = () => {
+    //let compare = compareSudokus(sudokuArr, sudoku[0]);
+    let res = {
+      isComplete: true,
+      isSolvable: true
+    }
+    for(let i=0; i<9; i++) {
+      for(let j=0; j<9; j++) {
+        if (sudokuArr[i][j] !== sudoku[1][i][j]) {
+          if (sudokuArr[i][j] !== 0) {
+            res.isSolvable = false;
+          }
+        }
+        res.isComplete = false;
+      }
+    }
+    if(res.isComplete) {
+      alert('congratulations! You have solved this sudoku puzzle');
+    } else if (res.isSolvable) {
+      alert('Keep going!');
+    } else {
+      alert('Sudoku does not match our solution, Try again!');
+    }
+  }
+  //fills out sudoku board with saved solution
+  const solveSudoku = () => {
+    setSudokuArr(sudoku[1]);
+  }
+  const resetSudoku = () => {
+    setSudokuArr(sudoku[0]);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -46,9 +76,9 @@ function App() {
           </tbody>
         </table>
         <div className='buttonContainer'>
-          <button className="checkButton">Check</button>
-          <button className="solveButton">Solve</button>
-          <button className="resetButton">Reset</button>
+          <button className="checkButton" onClick={checkSudoku}>Check</button>
+          <button className="solveButton" onClick={solveSudoku}>Solve</button>
+          <button className="resetButton" onClick={resetSudoku}>Reset</button>
         </div>
       </header>
     </div>
